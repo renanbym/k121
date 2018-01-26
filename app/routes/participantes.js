@@ -12,5 +12,7 @@ module.exports = (app) => {
     app.route('/api/sorteios')
     .get( sorteios.get )
     .post( sorteios.save )
+    .delete( sorteios.deleteAll )
+
 
 }

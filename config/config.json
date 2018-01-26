@@ -1,6 +1,6 @@
 {
     "development": {
-        "port": "3001"
+        "port": "3000"
         ,"db_host": "mongodb://localhost:27017/k121-development"
     }
     ,"test": {
@@ -9,7 +9,6 @@
     }
     ,"production": {
         "port": "3001"
-        ,"db_host": "mongodb://localhost:27017/k121"
+        ,"db_host": "mongodb://k121:k121@ds035250.mlab.com:35250/heroku_47nm9hsc"
     }
-
 }

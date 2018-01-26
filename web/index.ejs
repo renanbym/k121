@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html ng-app="k121">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>K121</title>
+
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+  <link rel="stylesheet" href="/public/css/style.css" />
+
+</head>
+
+<body ng-cloak  ng-controller="AppCtrl as app">
+
+  <div class="container-fluid">
+    <div class="row justify-content-center justify-content-md-center justify-content-lg-center">
+
+      <div class="col-4">
+        <div class="row">
+
+          <div class="col-12 content--form " ng-controller="FormCtrl as form">
+
+            <form  name="formDelivery" ng-submit="form.submit()" >
+
+              <fieldset>
+
+                <div class="form-group">
+                  <input  class="form-control" type="text" placeholder="Nome" ng-model="form.value.nome" required>
+                </div>
+
+                <div class="form-group">
+                  <input  class="form-control" type="email" placeholder="Email" ng-model="form.value.email" required>
+                </div>
+
+                <div class="form-group">
+                  <button class="col btn btn-info" type="submit">Cadastrar cliente</button>
+                </div>
+
+              </fieldset>
+
+            </form>
+
+            <button class="col btn btn-success" ng-click="form.sortear()">Sortear</button>
+
+          </div>
+
+          <div class="col-12 sorteio">
+
+            <div class="col">
+              <p>Total de Sorteios : {{ app.sorteios.length | number: 0}}</p>
+            </div>
+
+            <table class="col table table-striped table-bordered table-inverse  ">
+
+              <thead class="col ">
+                <tr>
+                  <th>Data</th>
+                  <th>Total de Participantes</th>
+                  <th>Ações</th>
+                </tr>
+              </thead>
+
+              <tbody  class="col ">
+                <tr ng-if="!app.sorteios.length">
+                  <td colspan="4"> Nenhuma sorteio cadastrado</td>
+                </tr>
+
+                <tr ng-repeat="sorteio in app.sorteios" >
+                  <td>{{sorteio.data}}</td>
+                  <td>{{sorteio.sorteio.length}}</td>
+                  <td><span ng-click="app.verSorteio(sorteio.sorteio)" class="badge badge-success badge-pill hoverable">ver</span></td>
+                </tr>
+              </tbody>
+            </table>
+
+            <div class="form-group">
+              <button class="col btn btn-danger" ng-click="app.deleteSorteios()">Apagar todos os sorteios</button>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+
+
+
+      <div class="col-8 ">
+
+        <div class="col">
+          <p>Total  de Participantes : {{ app.participantes.length | number: 0}}</p>
+        </div>
+
+        <table class="col table table-striped table-bordered table-inverse  ">
+
+          <thead class="col ">
+            <tr>
+              <th>Nome</th>
+              <th>Email</th>
+              <th>Ações</th>
+            </tr>
+          </thead>
+
+          <tbody  class="col ">
+            <tr ng-if="!app.participantes.length">
+              <td colspan="3"> Nenhuma participante cadastrado</td>
+            </tr>
+
+            <tr ng-repeat="participante in app.participantes" >
+              <td>{{participante.nome}}</td>
+              <td>{{participante.email}}</td>
+              <td><span ng-click="app.delete(participante)" class="badge badge-danger badge-pill hoverable">×</span></td>
+            </tr>
+          </tbody>
+        </table>
+
+      </div>
+
+    </div>
+  </div>
+
+
+  <div class="modal fade" id="modalSorteados" tabindex="-1" role="dialog" aria-labelledby="modalSorteados" aria-hidden="true">
+
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+
+        <div class="modal-header">
+
+          <h5 class="modal-title" >Sorteados</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+
+        <div class="modal-body">
+
+          <table class="col table table-striped table-bordered table-inverse  ">
+
+            <thead class="col ">
+              <tr>
+                <th>Nome</th>
+                <th>Amigo</th>
+              </tr>
+            </thead>
+
+            <tbody  class="col ">
+              <tr ng-if="!app.sorteados.length">
+                <td colspan="3"> Nenhuma participante cadastrado</td>
+              </tr>
+
+              <tr ng-repeat="sorteado in app.sorteados" >
+                <td>{{sorteado.nome}} <{{sorteado.email}}></td>
+                <td>{{sorteado.amigo}}</td>
+              </tr>
+
+            </tbody>
+          </table>
+
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <script src="/node_modules/sweetalert/dist/sweetalert.min.js"></script>
+  <script src="/node_modules/angular/angular.js"></script>
+  <script src="/node_modules/angular-resource/angular-resource.min.js"></script>
+  <script src="/public/js/app.js"></script>
+  <script src="/public/js/controllers/app.controller.js"></script>
+  <script src="/public/js/controllers/form.controller.js"></script>
+  <script src="/public/js/services/api.service.js"></script>
+
+</body>
+</html>

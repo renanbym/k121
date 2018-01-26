@@ -14,7 +14,10 @@ mongoose.connect( credentials.db_host )
 })
 
 const app = express()
-const server = http.createServer()
+const server = http.createServer(app)
+
+app.disable('x-powered-by');
+app.set('trust proxy', 1)
 
 app.set('view engine', 'ejs')
 app.set('views', './web')

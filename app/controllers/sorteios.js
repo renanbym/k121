@@ -8,11 +8,19 @@ module.exports = (app) => {
     const sorteio = {
 
         get: (req, res) => {
-            let query = sorteioModel.find({})
+            let query = sorteioModel.find({}).sort({data:-1});
             query.exec( (err, sorteios) => {
                 if(err) res.status(401).json({"code":401,"status":"error","message": err.errors })
                 res.status(200).json({"code":200,"status":"success","data": sorteios })
             })
+        }
+
+        ,deleteAll: ( req, res ) => {
+            sorteioModel.find({}).exec( (err, sorteios) => {
+                if(err) res.status(401).json({"code":401,"status":"error","message": err.errors })
+                sorteios.map( (current) => sorteioModel.remove({_id: current._id }, (err, sorteio) => {}) )
+                res.status(200).json({"code":200,"status":"success","data": [] })
+            });
         }
 
         ,fisherYates: ( arr ) => {
@@ -66,7 +74,7 @@ module.exports = (app) => {
                     }
 
                     sorteioModel({
-                        data: moment().format('YYYY-MM-DD')
+                        data: moment().format('YYYY-MM-DD HH:mm:ss')
                         ,sorteio: sorteados
                     })
                     .save( (err, resSorteios) => {
