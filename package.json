@@ -1,36 +1,39 @@
 {
-  "name": "k121",
-  "version": "1.0.0",
-  "description": "",
-  "main": "sorteio.js",
-  "scripts": {
-    "start": "./node_modules/mocha/bin/mocha --reporter spec --timeout 7000 && NODE_ENV=production nodemon app.js",
-    "dev": "NODE_ENV=development nodemon app.js",
-    "build": "npm install",
-    "test": "./node_modules/mocha/bin/mocha --reporter spec --timeout 7000"
-  },
-  "author": "",
-  "license": "ISC",
-  "devDependencies": {
-    "chai": "^4.1.2",
-    "chai-http": "^3.0.0",
-    "mocha": "^5.0.0",
-    "nodemon": "^1.14.11"
-  },
-  "dependencies": {
-    "angular": "^1.6.6",
-    "angular-resource": "^1.6.8",
-    "body-parser": "^1.18.2",
-    "ejs": "^2.5.7",
-    "express": "^4.16.2",
-    "express-load": "^1.1.16",
-    "http": "0.0.0",
-    "moment": "^2.20.1",
-    "mongoose": "^5.0.1",
-    "nodemailer": "^4.4.2",
-    "nodemailer-smtp-transport": "^2.7.4",
-    "q": "^1.5.1",
-    "sweetalert": "^2.1.0",
-    "swig": "^1.4.2"
-  }
+    "name": "k121",
+    "version": "1.0.0",
+    "description": "",
+    "main": "sorteio.js",
+    "engines": {
+        "node": "8.9.4"
+    },
+    "scripts": {
+        "start": "./node_modules/mocha/bin/mocha --reporter spec --timeout 7000 && NODE_ENV=production nodemon app.js",
+        "dev": "NODE_ENV=development nodemon app.js",
+        "build": "npm install",
+        "test": "./node_modules/mocha/bin/mocha --reporter spec --timeout 7000"
+    },
+    "author": "",
+    "license": "ISC",
+    "devDependencies": {
+        "chai": "^4.1.2",
+        "chai-http": "^3.0.0",
+        "mocha": "^5.0.0",
+        "nodemon": "^1.14.11"
+    },
+    "dependencies": {
+        "angular": "^1.6.6",
+        "angular-resource": "^1.6.8",
+        "body-parser": "^1.18.2",
+        "ejs": "^2.5.7",
+        "express": "^4.16.2",
+        "express-load": "^1.1.16",
+        "http": "0.0.0",
+        "moment": "^2.20.1",
+        "mongoose": "^5.0.1",
+        "nodemailer": "^4.4.2",
+        "nodemailer-smtp-transport": "^2.7.4",
+        "q": "^1.5.1",
+        "sweetalert": "^2.1.0",
+        "swig": "^1.4.2"
+    }
 }

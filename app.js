@@ -37,7 +37,7 @@ app.get('/', (req, res) => {
     res.render('index.ejs')
 })
 
-server.listen( credentials.port )
+server.listen( process.env.PORT || credentials.port )
 .on('listening', () => {
     console.log('Run, forest run', process.env.NODE_ENV, credentials.port )
 })
