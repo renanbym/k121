@@ -7,7 +7,7 @@
         "node": "8.9.4"
     },
     "scripts": {
-        "start": "./node_modules/mocha/bin/mocha --reporter spec --timeout 7000 && NODE_ENV=production nodemon app.js",
+        "start": "./node_modules/mocha/bin/mocha --reporter spec --timeout 7000 && NODE_ENV=homologation nodemon app.js",
         "dev": "NODE_ENV=development nodemon app.js",
         "build": "npm install",
         "test": "./node_modules/mocha/bin/mocha --reporter spec --timeout 7000"

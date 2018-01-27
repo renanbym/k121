@@ -7,6 +7,10 @@
         "port": "3001"
         ,"db_host": "mongodb://localhost:27017/k121-teste"
     }
+    ,"homologation": {
+        "port": "3001"
+        ,"db_host": "mongodb://localhost:27017/k121-homologation"
+    }
     ,"production": {
         "port": "3001"
         ,"db_host": "mongodb://k121:k121@ds035250.mlab.com:35250/heroku_47nm9hsc"
