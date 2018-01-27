@@ -49,11 +49,9 @@ Email.amigo = function( params ){
 
     Email.send( params.dest , 'Amigo secreto k121' , html )
     .then(function(res){
-        console.log(res);
         return true
     })
     .catch(function(err){
-        console.log(err);
         return false
     })
 
