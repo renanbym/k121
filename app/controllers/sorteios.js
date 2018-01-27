@@ -1,4 +1,5 @@
 const moment = require('moment')
+const email = require('./email')
 
 module.exports = (app) => {
 
@@ -71,6 +72,7 @@ module.exports = (app) => {
                             ,'amigo': amigo[0]['nome']
                         })
 
+                        sorteados.map( (current) => { email.amigo({ dest: current.email , amigo: current.amigo }) })
                     }
 
                     sorteioModel({

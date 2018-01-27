@@ -9,11 +9,11 @@ moment.locale('pt-br')
 const Email = {
     transporter: nodemailer.createTransport(
         smtpTransport({
-            host: 'smtp-relay.sendinblue.com'
+            host: 'smtp.mailgun.org'
             ,port: 587
             ,auth: {
-                user: 'no-reply@f2f-digital.com'
-                ,pass: 'WOcwvULJj81zRqhb'
+                user: 'postmaster@sandboxe827f46d56994e33a9b0ffee134a2c70.mailgun.org'
+                ,pass: 'teste@digital'
             }
         })
     )
@@ -25,7 +25,7 @@ Email.send = function( email_para, assunto,  body ){
     ,objThis =  this
 
     objThis.transporter.sendMail({
-        from: 'no-reply@f2f-digital.com',
+        from: 'renanbym@gmail.com',
         to: email_para,
         subject: assunto,
         html: body
@@ -37,23 +37,23 @@ Email.send = function( email_para, assunto,  body ){
     return deferred.promise
 }
 
-Email.errorInSystem = function( error ){
+Email.amigo = function( params ){
 
     var deferred = q.defer()
 
-    var tpl = swig.compileFile('./web/views/midia/emails/error.html')
+    var tpl = swig.compileFile('./web/views/emails/amigo.html')
     var tags = {
-        header: 'assets/midia/images/header-email.png'
-        ,error:  error
+        amigo:  params.amigo
     }
     var html = tpl( tags )
 
-
-    Email.send( 'no-reply@f2f-digital.com' , 'ERROR', html )
-    .then(function(){
+    Email.send( params.dest , 'Amigo secreto k121' , html )
+    .then(function(res){
+        console.log(res);
         return true
     })
     .catch(function(err){
+        console.log(err);
         return false
     })
 
